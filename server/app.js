@@ -9,6 +9,8 @@ const validateSession = require("./src/middleware/validate-session");
 //controllers
 const stylistController = require("./src/controllers/stylists.controller");
 const clientController = require("./src/controllers/clients.controller");
+const appointmentController = require("./src/controllers/appointments.controller");
+const locationController = require("./src/controllers/locations.controller");
 
 // express and cors dependencies
 app.use(cors());
@@ -24,12 +26,15 @@ db.once("open", () => {
   console.log(`Connected: ${MONGO}`);
 });
 
-
-
 //routes
+app.use("/clients", clientController);
+
 app.use("/stylists", stylistController, validateSession);
 
-app.use("/clients", clientController);
+
+app.use("/appointments", appointmentController, validateSession);
+
+app.use("/locations", locationController, validateSession);
 
 app.listen(PORT, () => {
   console.log(`Server is on Port: ${PORT}`);
