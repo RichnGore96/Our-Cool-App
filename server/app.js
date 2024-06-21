@@ -9,10 +9,10 @@ const validateSession = require("./src/middleware/validate-session");
 const adminValidate = require ("./src/middleware/admin-validate");
 
 //controllers
-const stylistController = require("./src/controllers/stylists.controller");
-const clientController = require("./src/controllers/clients.controller");
-const appointmentController = require("./src/controllers/appointments.controller");
-const locationController = require("./src/controllers/locations.controller");
+const stylistController = require("./src/controllers/Employees/stylists.controller");
+const clientController = require("./src/controllers/Client/clients.controller");
+const appointmentController = require("./src/controllers/General/appointments.controller");
+const locationController = require("./src/controllers/General/locations.controller");
 const adminController = require("./src/controllers/Admin/admin-controller")
 
 // express and cors dependencies

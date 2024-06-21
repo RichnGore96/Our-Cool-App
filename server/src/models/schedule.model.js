@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const appointmentSchema = new mongoose.Schema({
+const scheduleSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,

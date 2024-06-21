@@ -170,3 +170,5 @@ router.post("/", async (req,res) => {
         errorResponse(res, err)
     }
 })
+
+module.exports = router;
