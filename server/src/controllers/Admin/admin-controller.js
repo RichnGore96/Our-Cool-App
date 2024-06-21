@@ -147,3 +147,26 @@ router.patch("/:id", async (req,res) => {
     errorResponse(res,err);
 }
 })
+
+//Create Schedule
+router.post("/", async (req,res) => {
+    try{
+        const { 
+            firstName, lastInit, date, shiftStart, shiftEnd 
+        } = req.body;
+    
+        const schedule = new Schedule({
+            firstName, lastInit, date, shiftStart, shiftEnd
+        })
+    
+        const newSchedule = await schedule.save();
+    
+        res.status(200).json({
+            result: newSchedule,
+            message: `${newSchedule.firstName} successfully added to system.`
+        })
+    
+    } catch (err) {
+        errorResponse(res, err)
+    }
+})
