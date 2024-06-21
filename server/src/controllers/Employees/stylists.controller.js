@@ -71,5 +71,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//Confirm/Check-In Clients
+
+//Display All Appointments by 
+
 
 module.exports = router;
