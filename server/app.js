@@ -39,7 +39,7 @@ app.use("/appointments", appointmentController, validateSession);
 
 app.use("/locations", locationController, validateSession);
 
-app.use("/admin", adminController, validateSession, adminValidate);
+app.use("/admin", adminController, );
 
 app.listen(PORT, () => {
 console.log(`Server is on Port: ${PORT}`);

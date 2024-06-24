@@ -13,8 +13,8 @@ const SECRET = process.env.JWT;
 const Employee = require("../../models/employee.model")
 const Appointment = require("../../models/appointments.model")
 const Shifts = require("../../models/schedule.model")
-const adminValidate = require('../../middleware/admin-validate')
-const validateSession = require('../../middleware/validate-session')
+// const adminValidate = require('../../middleware/admin-validate')
+// const validateSession = require('../../middleware/validate-session')
 
 //Error Function
 const errorResponse = (res, error) => {
