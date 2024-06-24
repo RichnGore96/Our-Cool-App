@@ -1,7 +1,7 @@
 //my require section
 
 const router = require("express").Router();
-const Appointment = require("../models/appointments.model");
+const Appointment = require("../../models/appointments.model");
 
 // error handling function
 const errorResponse = (res, error) => {
