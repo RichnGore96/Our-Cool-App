@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/stylists.model");
+const User = require("../../models/stylists.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
@@ -70,6 +70,10 @@ router.post('/login', async (req, res) => {
       errorResponse(res, error);
   }
 });
+
+//Confirm/Check-In Clients
+
+//Display All Appointments by 
 
 
 module.exports = router;

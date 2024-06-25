@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Location = require("../models/location.model");
+const Location = require("../../models/location.model");
 
 // error handling function
 const errorResponse = (res, error) => {

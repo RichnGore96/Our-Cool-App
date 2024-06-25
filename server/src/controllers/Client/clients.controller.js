@@ -1,7 +1,6 @@
 //my require section
-
 const router = require("express").Router();
-const Client = require("../models/clients.models");
+const Client = require("../../models/clients.models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
