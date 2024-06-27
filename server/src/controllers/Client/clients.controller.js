@@ -15,6 +15,10 @@ const errorResponse = (res, error) => {
 router.post("/signup", async (req, res) => {
   try {
     const { email } = req.body;
+    // throw error if email is missing 
+    if (!email) {
+      throw new Error("Email required");
+    }
 
     const client = new Client({
       email,
