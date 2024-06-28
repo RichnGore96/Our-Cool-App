@@ -14,18 +14,18 @@ const errorResponse = (res, error) => {
     try {
         const { email, password } = req.body; // get email and password from request body
   
-        const user = await User.findOne({ email }); // find user
+        const employees = await Employee.findOne({ email }); // find user
   
         // check if user exist
-        if (!user || !(await bcrypt.compare(password, user.password))) {
+        if (!employees || !(await bcrypt.compare(password, employees.password))) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
   
         // create token for our validated session
-        const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: '1 day' });
+        const token = jwt.sign({ id: employees._id }, SECRET, { expiresIn: '1 day' });
   
         res.status(200).json({
-            user,
+            employees,
             message: `successfully logged In: ${email}`,
             token
         });
@@ -35,7 +35,7 @@ const errorResponse = (res, error) => {
   });
 
   // See all appointments
-  router.get("/get-employee", async (req, res) => {
+  router.get("/get-employees", async (req, res) => {
     try {
 
         const getAllAppmts = await Appointment.find();
@@ -51,21 +51,21 @@ const errorResponse = (res, error) => {
 });
 
 // manage appointments
-router.patch("/_employee", async (req,res) => {
+router.patch("/_employees", async (req,res) => {
     try {
-    const { employee } = req.params
+    const { employees } = req.params
 
     const appmtInfo = req.body;
 
     const update = await Appointment.findOneAndUpdate(
-        {_id: employee}, 
+        {_id: employees}, 
         appmtInfo, 
         {new: true}
     )
     console.log(update);
 
     res.status(200).json({
-        message: `${update.employee}'s appointment updated!`,
+        message: `${update.employees}'s appointment updated!`,
         update
     })
 
