@@ -12,12 +12,13 @@ const errorResponse = (res, error) => {
 
 router.post("/book-appointment", async (req, res) => {
   try {
-    const { date, time, client, stylist } = req.body;
+    const { employee, date, time, service, email } = req.body;
     const newAppointment = new Appointment({
+      employee,
       date,
       time,
-      client,
-      stylist,
+      service,
+      email
     });
     const savedAppointment = await newAppointment.save();
     res.status(200).json(savedAppointment);
@@ -31,6 +32,17 @@ router.get("/get-appointments", async (req, res) => {
   try {
     const appointments = await Appointment.find();
     res.status(200).json(appointments);
+  } catch (error) {
+    // error handling
+    errorResponse(res, error);
+  }
+});
+// get an appointment by id
+router.get("/get-appointment/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const appointment = await Appointment.findById({ _id: id });
+    res.status(200).json(appointment);
   } catch (error) {
     // error handling
     errorResponse(res, error);
