@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
 
     res.status(200).json({
       result: newEmployee,
-      message: `${newEmployee.firstName} successfully added to system.`,
+      message: `User successfully added to system.`,
     });
   } catch (err) {
     errorResponse(res, err);
@@ -82,17 +82,15 @@ router.get("/", async (req, res) => {
 });
 
 // Change One Appointment
-router.patch("/_client", async (req, res) => {
+router.patch("/client/:id", async (req, res) => {
   try {
-    const { client } = req.params;
+    const { id } = req.params;
 
     const appmtInfo = req.body;
 
-    const update = await Appointment.findOneAndUpdate(
-      { _client: client },
-      appmtInfo,
-      { new: true }
-    );
+    const update = await Appointment.findOneAndUpdate({ _id: id }, appmtInfo, {
+      new: true,
+    });
     console.log(update);
 
     res.status(200).json({

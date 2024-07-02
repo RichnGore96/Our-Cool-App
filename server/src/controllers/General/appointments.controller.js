@@ -12,13 +12,13 @@ const errorResponse = (res, error) => {
 
 router.post("/book-appointment", async (req, res) => {
   try {
-    const { employee, date, time, service, email } = req.body;
+    const { employee, date, time, service, client } = req.body;
     const newAppointment = new Appointment({
       employee,
       date,
       time,
       service,
-      email
+      client,
     });
     const savedAppointment = await newAppointment.save();
     res.status(200).json(savedAppointment);
