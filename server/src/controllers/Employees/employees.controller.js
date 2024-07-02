@@ -1,10 +1,9 @@
 const router = require("express").Router();
-const Employees = require("../models/employees.model");
+const Employees = require("../../models/employees.model");
 const Appointment = require("../../models/appointments.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
-
 
 const errorResponse = (res, error) => {
   return res.status(200).json({
@@ -95,11 +94,11 @@ router.post("/add-appointment", async (req, res) => {
       email: req.user.email,
     });
     const savedAppointment = await newAppointment.save();
-    res.status(200).json(savedAppointment);}catch (error) {
-      // error handling
-      errorResponse(res, error);
-    }
-
+    res.status(200).json(savedAppointment);
+  } catch (error) {
+    // error handling
+    errorResponse(res, error);
+  }
 });
 
 // manage appointments
