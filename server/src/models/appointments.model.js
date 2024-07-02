@@ -8,7 +8,11 @@ const appointmentSchema = new mongoose.Schema({
     ref: "Employee",
     required: true,
   },
- date: {
+  client: {
+    type: String,
+    required: true,
+  },
+  date: {
     type: String,
     required: true,
   },
@@ -19,13 +23,11 @@ const appointmentSchema = new mongoose.Schema({
   service: {
     type: String,
     required: true,
-  }, 
-  email: {
-
-    type: String,
-    required: true
-    
   }
+  // email: {
+  //   type: String,
+  //   required: true
+  // }
 });
 
 module.exports = mongoose.model("Appointment", appointmentSchema);
