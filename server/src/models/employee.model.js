@@ -19,7 +19,7 @@ const employeeSchema = new mongoose.Schema({
     },
     ifAdmin: {
         type: Boolean,
-        default: true
+        default: false
     }
 });
 
