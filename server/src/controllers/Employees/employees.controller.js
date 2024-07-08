@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Employees = require("../../models/employees.model");
+const Users = require("../../models/user.model");
 const Appointment = require("../../models/appointments.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = new Employees({
+    const user = new Users({
       email,
       password: bcrypt.hashSync(password, 7),
     });
@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body; // get email and password from request body
 
-    const user = await Employees.findOne({ email }); // find user
+    const user = await Users.findOne({ email }); // find user
 
     // check if user exist
     if (!user || !(await bcrypt.compare(password, user.password))) {

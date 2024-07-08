@@ -6,10 +6,6 @@ const appointmentSchema = new mongoose.Schema({
     ref: "Employee",
     required: true,
   },
-  client: {
-    type: String,
-    required: true,
-  },
   date: {
     type: String,
     required: true,
@@ -21,12 +17,14 @@ const appointmentSchema = new mongoose.Schema({
   service: {
     type: String,
     required: true,
-  }, 
+  },
+  client: {
+    type: String,
+    required: true,
+  },
   email: {
-
     type: String,
     required: true
-    
   }
 });
 

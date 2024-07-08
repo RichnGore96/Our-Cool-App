@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/stylists.model");
+const User = require("../models/user.model");
 
 // error handling function
 const validateSession = async (req, res, next) => {
