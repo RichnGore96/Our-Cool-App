@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const appointmentSchema = new mongoose.Schema({
+  employee: {
+    type: mongoose.Schema.Types.String,
+    ref: "Employee",
+    required: true,
+  },
   date: {
     type: String,
     required: true,
@@ -9,16 +14,18 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  service: {
+    type: String,
+    required: true,
+  },
   client: {
     type: String,
-    ref: "Client",
     required: true,
   },
-  stylist: {
+  email: {
     type: String,
-    ref: "Stylist",
-    required: true,
-  },
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Appointment", appointmentSchema);

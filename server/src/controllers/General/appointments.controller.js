@@ -10,17 +10,22 @@ const errorResponse = (res, error) => {
   });
 };
 
-router.post("/book-appointment", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const { date, time, client, stylist } = req.body;
+    const { employee, date, time, client, service, email } = req.body;
     const newAppointment = new Appointment({
+      employee,
       date,
       time,
+      service,
       client,
-      stylist,
+      email
     });
     const savedAppointment = await newAppointment.save();
-    res.status(200).json(savedAppointment);
+    res.status(200).json({
+      result: savedAppointment,
+      message: "Appointment has been created."
+    });
   } catch (error) {
     // error handling
     errorResponse(res, error);
@@ -36,5 +41,26 @@ router.get("/get-appointments", async (req, res) => {
     errorResponse(res, error);
   }
 });
+// get an appointment by id
+router.get("/get-appointment/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const appointment = await Appointment.findById({ _id: id });
+    res.status(200).json(appointment);
+  } catch (error) {
+    // error handling
+    errorResponse(res, error);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try{
+    const { id } = req.params;
+    const deleteAppointment = await Appointment.deleteOne({ _id: id});
+    res.status(200).json(deleteAppointment);
+  } catch (error) {
+    errorResponse(res, error);
+  }
+})
 
 module.exports = router;
