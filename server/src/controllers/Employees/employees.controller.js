@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Employees = require("../../models/employees.model");
+const User = require("../../models/user.model");
 const Appointment = require("../../models/appointments.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = new Employees({
+    const user = new User({
       email,
       password: bcrypt.hashSync(password, 7),
     });
@@ -91,7 +91,7 @@ router.post("/add-appointment", async (req, res) => {
       date,
       time,
       service,
-      email: req.user.email,
+      email,
     });
     const savedAppointment = await newAppointment.save();
     res.status(200).json(savedAppointment);

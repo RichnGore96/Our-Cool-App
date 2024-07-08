@@ -1,9 +1,10 @@
 //my require section
 const router = require("express").Router();
 const Client = require("../../models/clients.models");
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
+
 
 // error handling function
 const errorResponse = (res, error) => {
@@ -40,5 +41,36 @@ router.post("/signup", async (req, res) => {
     errorResponse(res, error);
   }
 });
+
+router.get("/get-clients", async (req, res) => {
+  try {
+    const clients = await Client.find();
+    res.status(200).json(clients);
+  } catch (error) {
+    // error handling
+    errorResponse(res, error);
+  }
+});
+
+router.get("/get-client/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const client = await Client.findById({ _id: id });
+    res.status(200).json(client);
+  } catch (error) {
+    // error handling
+    errorResponse(res, error);
+  }
+});
+router.get("/get-client/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
+    const client = await Client.findOne({ email });
+    res.status(200).json(client);
+  } catch (error) {
+    // error handling
+    errorResponse(res, error);
+  }
+})
 
 module.exports = router;

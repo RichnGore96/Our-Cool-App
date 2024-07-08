@@ -6,13 +6,21 @@
     - Can view all employee appointments and change if needed.
 */
 
+/* const inputChange = (e) => {
+  const { name, value } = e.target;
+  return setFormDetails({
+    ...formDetails,
+    [name]: value,
+  });
+}; */
+
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
 const Employee = require("../../models/employee.model");
 const Appointment = require("../../models/appointments.model");
-const Shifts = require("../../models/schedule.model");
+const Schedule = require("../../models/schedule.model");
 // const adminValidate = require('../../middleware/admin-validate')
 // const validateSession = require('../../middleware/validate-session')
 
@@ -34,6 +42,7 @@ router.post("/", async (req, res) => {
       startDate,
       email,
       ifAdmin,
+      
     });
 
     const newEmployee = await employees.save();
@@ -139,7 +148,7 @@ router.patch("/:id", async (req, res) => {
 });
 
 //Create Schedule
-router.post("/", async (req, res) => {
+router.post("/schedule", async (req, res) => {
   try {
     const { firstName, lastInit, date, shiftStart, shiftEnd } = req.body;
 
