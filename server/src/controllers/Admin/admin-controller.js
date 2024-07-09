@@ -12,7 +12,7 @@ const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
 const Employee = require("../../models/employee.model");
 const Appointment = require("../../models/appointments.model");
-const Shifts = require("../../models/schedule.model");
+const Schedule = require("../../models/schedule.model");
 // const adminValidate = require('../../middleware/admin-validate')
 // const validateSession = require('../../middleware/validate-session')
 
