@@ -2,6 +2,7 @@
 
 const router = require("express").Router();
 const Appointment = require("../../models/appointments.model");
+const Client = require("../../models/clients.models");
 
 // error handling function
 const errorResponse = (res, error) => {
@@ -12,15 +13,17 @@ const errorResponse = (res, error) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { employee, date, time, client, service, email } = req.body;
+    const { employee, date, time, service} = req.body;
     const newAppointment = new Appointment({
       employee,
       date,
       time,
-      service,
-      client,
-      email
+      service
+    ,
     });
+    const client = await Client.find();
+    console.log(client);
+
     const savedAppointment = await newAppointment.save();
     res.status(200).json({
       result: savedAppointment,
@@ -52,15 +55,5 @@ router.get("/get-appointment/:id", async (req, res) => {
     errorResponse(res, error);
   }
 });
-
-router.delete("/:id", async (req, res) => {
-  try{
-    const { id } = req.params;
-    const deleteAppointment = await Appointment.deleteOne({ _id: id});
-    res.status(200).json(deleteAppointment);
-  } catch (error) {
-    errorResponse(res, error);
-  }
-})
 
 module.exports = router;
