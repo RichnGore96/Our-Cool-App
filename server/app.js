@@ -6,15 +6,16 @@ const PORT = process.env.PORT;
 
 //middleware
 const validateSession = require("./src/middleware/validate-session");
-const adminValidate = require ("./src/middleware/admin-validate");
+const adminValidate = require("./src/middleware/admin-validate");
 
 //controllers
 const reviewController = require("./src/controllers/review.controller");
-const stylistController = require("./src/controllers/Employees/stylists.controller");
+//const stylistController = require("./src/controllers/Employees/stylists.controller");
 const clientController = require("./src/controllers/Client/clients.controller");
 const appointmentController = require("./src/controllers/General/appointments.controller");
 const locationController = require("./src/controllers/General/locations.controller");
-const adminController = require("./src/controllers/Admin/admin-controller")
+const adminController = require("./src/controllers/Admin/admin-controller");
+const employeeController = require("./src/controllers/Employees/employees.controller");
 
 // express and cors dependencies
 app.use(cors());
@@ -34,15 +35,16 @@ db.once("open", () => {
 //routes
 app.use("/clients", clientController);
 
-app.use("/stylists", stylistController, validateSession);
+//app.use("/stylists", stylistController, validateSession);
 
 app.use("/appointments", appointmentController, validateSession);
 
 app.use("/locations", locationController, validateSession);
 
 app.use("/reviews", reviewController, validateSession);
-app.use("/admin", adminController );
+app.use("/admin", adminController);
+app.use("/employees", employeeController);
 
 app.listen(PORT, () => {
-console.log(`Server is on Port: ${PORT}`);
+  console.log(`Server is on Port: ${PORT}`);
 });

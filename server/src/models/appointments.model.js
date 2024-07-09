@@ -1,24 +1,40 @@
 const mongoose = require("mongoose");
 
-const appointmentSchema = new mongoose.Schema({
-  date: {
-    type: String,
-    required: true,
+const appointmentSchema = new mongoose.Schema(
+  {
+    employee: {
+      type: String,
+      ref: "Employee",
+      required: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    time: {
+      type: Number,
+      required: true,
+    },
+    service: {
+      type: String,
+      required: true,
+    },
+    client: {
+      type: String,
+      ref: "Client",
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    owner_id: {
+      type: String
+    },
   },
-  time: {
-    type: String,
-    required: true,
-  },
-  client: {
-    type: String,
-    ref: "Client",
-    required: true,
-  },
-  stylist: {
-    type: String,
-    ref: "Stylist",
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
+
 
 module.exports = mongoose.model("Appointment", appointmentSchema);

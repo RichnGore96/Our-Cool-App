@@ -16,7 +16,10 @@ router.post("/add-location", async (req, res) => {
       address,
     });
     const savedLocation = await newLocation.save();
-    res.status(200).json(savedLocation);
+    res.status(200).json({
+      result: savedLocation,
+      message: `${savedLocation.salon} successfully added to system.`,
+    });
   } catch (error) {
     // error handling
     errorResponse(res, error);
