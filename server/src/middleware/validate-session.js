@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
-const Employees = require("../models/user.model");
 const Clients = require("../models/clients.models");
+
+const User = require("../models/user.model");
 
 // error handling function
 const validateSession = async (req, res, next) => {
@@ -9,7 +10,7 @@ const validateSession = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT);
 
-    const user = await Employees.findById(decoded.id);
+    const user = await User.findById(decoded.id);
     const client = await Clients.findById(decoded.id);
 
     if (!user) throw new Error("not a valid user");

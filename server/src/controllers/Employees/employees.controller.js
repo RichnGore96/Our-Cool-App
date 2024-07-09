@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body; // get email and password from request body
 
-    const user = await Employees.findOne({ email }); // find user
+    const user = await Users.findOne({ email }); // find user
 
     // check if user exist
     if (!user || !(await bcrypt.compare(password, user.password))) {
