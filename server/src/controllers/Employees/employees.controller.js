@@ -91,6 +91,7 @@ router.post("/add-appointment", async (req, res) => {
       date,
       time,
       service,
+      client,
       email,
     });
     const savedAppointment = await newAppointment.save();

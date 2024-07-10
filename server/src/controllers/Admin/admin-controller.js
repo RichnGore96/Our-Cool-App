@@ -6,14 +6,6 @@
 - Can view all employee appointments and change if needed.
 */
 
-/* const inputChange = (e) => {
-  const { name, value } = e.target;
-  return setFormDetails({
-    ...formDetails,
-    [name]: value,
-  });
-}; */
-
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
