@@ -13,13 +13,12 @@ const errorResponse = (res, error) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { employee, date, time, service} = req.body;
+    const { employee, date, time, service } = req.body;
     const newAppointment = new Appointment({
       employee,
       date,
       time,
-      service
-    ,
+      service,
     });
     const client = await Client.find();
     console.log(client);
@@ -27,7 +26,7 @@ router.post("/", async (req, res) => {
     const savedAppointment = await newAppointment.save();
     res.status(200).json({
       result: savedAppointment,
-      message: "Appointment has been created."
+      message: "Appointment has been created.",
     });
   } catch (error) {
     // error handling
@@ -54,6 +53,15 @@ router.get("/get-appointment/:id", async (req, res) => {
     // error handling
     errorResponse(res, error);
   }
+  router.delete("/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deleteAppointment = await Appointment.deleteOne({ _id: id });
+      res.status(200).json(deleteAppointment);
+    } catch (error) {
+      errorResponse(res, error);
+    }
+  });
 });
 
 module.exports = router;

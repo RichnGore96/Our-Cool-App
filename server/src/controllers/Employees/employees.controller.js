@@ -85,7 +85,7 @@ router.get("/get-appointments", async (req, res) => {
 // Add an appointment
 router.post("/add-appointment", async (req, res) => {
   try {
-    const { employee, date, time, service } = req.body;
+    const { employee, date, time, service, client, email } = req.body;
     const newAppointment = new Appointment({
       employee,
       date,
