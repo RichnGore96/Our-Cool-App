@@ -19,14 +19,6 @@ const appointmentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    client: {
-      type: String,
-      ref: "Client",
-    },
-    email: {
-      type: String,
-      required: true,
-    },
     owner_id: {
       type: String
     },
