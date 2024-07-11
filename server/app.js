@@ -24,6 +24,7 @@ app.use(express.json());
 
 // MongoDB
 const mongoose = require("mongoose");
+const validateClient = require("./src/middleware/validate-session");
 const MONGO = process.env.MONGODB;
 mongoose.set("strictQuery", false);
 mongoose.connect(`${MONGO}/Our-cool-App`);
@@ -38,12 +39,18 @@ app.use("/clients", clientController);
 
 //app.use("/stylists", stylistController, validateSession);
 
-app.use("/appointments", appointmentController, validateSession);
+app.use(
+  "/appointments",
+  appointmentController,
+  validateSession,
+  adminValidate,
+  validateClient
+);
 
-app.use("/locations", locationController, validateSession);
+app.use("/locations", locationController, validateSession, adminValidate);
 
-app.use("/reviews", reviewController, validateSession);
-app.use("/admin", adminController);
+app.use("/reviews", reviewController, validateClient);
+app.use("/admin", adminController, validateSession, adminValidate);
 app.use("/employees", employeeController);
 
 app.listen(PORT, () => {

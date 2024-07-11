@@ -13,17 +13,15 @@ router.post("/post-review", async (req, res) => {
     const { review } = req.body;
     const newReview = new Review({
       review,
+      owner_id: req.client._id,
     });
     const savedReview = await newReview.save();
     res.status(200).json(savedReview);
-    }
-    
-  
-  catch (error) {
+  } catch (error) {
     // error handling
     errorResponse(res, error);
   }
-})
+});
 
 router.get("/get-review", async (req, res) => {
   try {
