@@ -33,9 +33,7 @@ router.post("/register", async (req, res) => {
 
     res.status(200).json({
       user: newUser,
-      message: `Welcome! ${
-        firstName + " " + lastName
-      } we are glad to have you on our platform`, // message for the new user
+      message: `Welcome! we are glad to have you on our platform`, // message for the new user
       token,
     });
   } catch (error) {
