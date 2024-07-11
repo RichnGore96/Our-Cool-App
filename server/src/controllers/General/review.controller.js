@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const Review = require("../models/review.model");
-
+const Review = require("../../models/review.model");
 
 // error handling function
 const errorResponse = (res, error) => {
