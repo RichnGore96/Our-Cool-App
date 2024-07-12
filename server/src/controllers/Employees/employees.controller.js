@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../../models/user.model");
+const Employee = require("../../models/employee.model");
 const Appointment = require("../../models/appointments.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -18,24 +19,44 @@ router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = new User({
-      email,
-      password: bcrypt.hashSync(password, 7),
-    });
+    const employee = await Employee.findOne({email});
 
-    const newUser = await user.save();
+    if (!employee){
+      return res.status(404).json({message: "Employee email not found."})
+    }
 
-    const token = jwt.sign(
-      { id: newUser._id }, // payload
+    const existingUser = await User.findOne({email})
+
+    if (exisitngUser){
+      return res.status(400).json({msssage: "User already registered on system."})
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({ email, password: hashedPassword });
+    const savedUser = await newUser.save();
+
+        const token = jwt.sign(
+      { id: savedUser._id }, // payload
       SECRET, //message
       { expiresIn: "1 day" } // options
     );
 
-    res.status(200).json({
-      user: newUser,
+        res.status(200).json({
+      user: savedUser,
       message: `Welcome! we are glad to have you on our platform`, // message for the new user
       token,
     });
+
+    // const newUser = await user.save();
+
+
+
+    // res.status(200).json({
+    //   user: newUser,
+    //   message: `Welcome! we are glad to have you on our platform`, // message for the new user
+    //   token,
+    // });
   } catch (error) {
     errorResponse(res, error);
   }
@@ -45,12 +66,13 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body; // get email and password from request body
 
-    const user = await Users.findOne({ email }); // find user
-
-    // check if user exist
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ message: "Invalid email or password" });
+    const user = await User.findOne({ email }); // find user
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email" });
     }
+
+    const passwordMatch = await bcrypt.compare(password, user.password)
+    if (!passwordMatch) throw new Error("Invalid Password")
 
     // create token for our validated session
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "1 day" });
@@ -62,8 +84,7 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     errorResponse(res, error);
-  }
-});
+  }});
 
 // See all appointments
 router.get("/get-appointments", async (req, res) => {
