@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
 
     const existingUser = await User.findOne({email})
 
-    if (exisitngUser){
+    if (existingUser){
       return res.status(400).json({msssage: "User already registered on system."})
     }
 
@@ -43,20 +43,11 @@ router.post("/register", async (req, res) => {
     );
 
         res.status(200).json({
-      user: savedUser,
+      user: newUser,
       message: `Welcome! we are glad to have you on our platform`, // message for the new user
       token,
     });
 
-    // const newUser = await user.save();
-
-
-
-    // res.status(200).json({
-    //   user: newUser,
-    //   message: `Welcome! we are glad to have you on our platform`, // message for the new user
-    //   token,
-    // });
   } catch (error) {
     errorResponse(res, error);
   }
