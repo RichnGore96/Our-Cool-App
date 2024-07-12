@@ -10,7 +10,11 @@ const adminValidate = require("./src/middleware/admin-validate");
 
 //controllers
 
+<<<<<<< HEAD
 //const stylistController = require("./src/controllers/Employees/stylists.controller");
+=======
+const reviewController = require("./src/controllers/General/review.controller");
+>>>>>>> 44484803e294bb8468215b18c013fb59b49e45b2
 const clientController = require("./src/controllers/Client/clients.controller");
 const appointmentController = require("./src/controllers/General/appointments.controller");
 const locationController = require("./src/controllers/General/locations.controller");
@@ -37,7 +41,7 @@ db.once("open", () => {
 //routes
 app.use("/clients", clientController);
 
-//app.use("/stylists", stylistController, validateSession);
+
 
 app.use(
   "/appointments",
