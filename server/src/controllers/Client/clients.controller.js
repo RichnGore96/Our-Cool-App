@@ -20,6 +20,7 @@ router.post("/signup", async (req, res) => {
     if (!email) {
       throw new Error("Email required");
     }
+    
 
     const client = new Client({
       email,

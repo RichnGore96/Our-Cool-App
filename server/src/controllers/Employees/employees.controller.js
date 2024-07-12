@@ -19,38 +19,39 @@ router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const employee = await Employee.findOne({email});
+    const employee = await Employee.findOne({ email });
 
-    if (!employee){
-      return res.status(404).json({message: "Employee email not found."})
+    if (!employee) {
+      return res.status(404).json({ message: "Employee email not found." });
     }
 
-    const existingUser = await User.findOne({email})
+    const existingUser = await User.findOne({ email });
 
-    if (exisitngUser){
-      return res.status(400).json({msssage: "User already registered on system."})
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ msssage: "User already registered on system." });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({
+      email,
+      password: bcrypt.hashSync(password, 13),
+    });
     const savedUser = await newUser.save();
 
-        const token = jwt.sign(
+    const token = jwt.sign(
       { id: savedUser._id }, // payload
       SECRET, //message
       { expiresIn: "1 day" } // options
     );
 
-        res.status(200).json({
+    res.status(200).json({
       user: savedUser,
       message: `Welcome! we are glad to have you on our platform`, // message for the new user
       token,
     });
 
     // const newUser = await user.save();
-
-
 
     // res.status(200).json({
     //   user: newUser,
@@ -71,8 +72,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email" });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password)
-    if (!passwordMatch) throw new Error("Invalid Password")
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) throw new Error("Invalid Password");
 
     // create token for our validated session
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "1 day" });
@@ -84,7 +85,8 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     errorResponse(res, error);
-  }});
+  }
+});
 
 // See all appointments
 router.get("/get-appointments", async (req, res) => {
