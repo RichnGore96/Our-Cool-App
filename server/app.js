@@ -34,8 +34,19 @@ db.once("open", () => {
 
 //routes
 app.use("/clients", clientController);
-app.use("/appointments", appointmentController, validateSession, adminValidate, validateClient);
+
+//app.use("/stylists", stylistController, validateSession);
+
+app.use(
+  "/appointments",
+  appointmentController,
+  validateSession,
+  adminValidate,
+  validateClient
+);
+
 app.use("/locations", locationController, validateSession, adminValidate);
+
 app.use("/reviews", reviewController, validateClient);
 app.use("/admin", adminController, validateSession, adminValidate);
 app.use("/employees", employeeController);
