@@ -17,6 +17,7 @@ function Services() {
             title="Hair Styling"
             description="Perfect hairstyles for any occasion."
             imageUrl="https://via.placeholder.com/150"
+            
           />
         </div>
       </section>
