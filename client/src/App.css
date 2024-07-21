@@ -2,7 +2,12 @@
   display: flex;
   text-align: center;
   justify-content: center;
-
+  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #8a607e;
+  text-align: center;
   font-family: Arial, sans-serif;
 }
 
@@ -10,6 +15,10 @@
   background-color: #333;
   padding: 20px;
   color: white;
+  background-color: #2c081e;
+  padding: 50px;
+  font-size: 2em;
+  color: rgb(215, 53, 174);
 }
 
 .App-header nav ul {
@@ -35,10 +44,18 @@
 
 .Hero-section h2 {
   font-size: 2.5em;
+  background-color: #b197a8;
+  padding: 50px 20px;
+}
+
+.Hero-section h2 {
+  font-size: 2em;
 }
 
 .Hero-section p {
   font-size: 1.2em;
+
+  font-style: italic;
 }
 
 .Hero-section button {
@@ -69,6 +86,10 @@
 
 .Service-card {
   background-color: white;
+}
+
+.Service-card {
+  background-color: rgb(182, 155, 155);
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
@@ -79,7 +100,9 @@
 
 .Service-card img {
   width: 100%;
+
   height: auto;
+
   border-radius: 8px;
 }
 
@@ -94,6 +117,95 @@
 }
 .Location-section p {
   font-size: 1.2em;
+  font-size: 0.75em;
+  color: #160101;
+}
+
+.Stylists-section {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Stylists-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.Stylist-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: left;
+}
+
+.Stylist-card {
+  background-color: rgba(15, 11, 11, 0.721);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+  text-align: left;
+}
+
+.Stylist-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.Stylist-card h3 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.Stylist-card p {
+  font-size: 1em;
+  color: white;
+}
+
+.Location-section {
+  padding: 50px 20px;
+}
+
+.Location-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.Location-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Location-card {
+  background-color: rgb(112, 75, 104);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+  text-align: left;
+}
+
+.Location-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.Location-card h3 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.Location-card p {
+  font-size: 1em;
+  color: #180202;
 }
 
 .App-footer {
