@@ -70,19 +70,11 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body; // get email and password from request body
 
     const user = await User.findOne({ email }); // find user
-<<<<<<< HEAD
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email" });
-=======
-
+    
     // check if user exist
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: "Invalid email or password" });
->>>>>>> f37b3ca5c3d86df43bbdc4707878ee2694619ece
-    }
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) throw new Error("Invalid Password");
+}
 
     // create token for our validated session
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "1 day" });
