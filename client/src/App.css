@@ -1,15 +1,9 @@
-
-
-
 .App {
   display: flex;
   text-align: center;
-<<<<<<< HEAD
   justify-content: center;
 
-=======
   font-family: Arial, sans-serif;
-
 }
 
 .App-header {
@@ -110,5 +104,4 @@
   width: 100%;
   bottom: 0;
   text-align: center;
->>>>>>> 0607cb69083c223b60431a4121a261873100e22f
 }
