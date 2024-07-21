@@ -22,9 +22,9 @@ function App() {
       <Stylists />
       <Location />
       <Footer />
-    
-    </div>
-  );
+
+    </div> 
+  );  
 }
 
 export default App;
