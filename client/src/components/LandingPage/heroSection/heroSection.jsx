@@ -6,8 +6,8 @@ function HeroSection() {
 
   function handleSubmit() {
     navigate("/appointments")
-
-    return (
+  }
+    /* return (
       <section className="Hero-section">
         <h2>Welcome to Salon Don</h2>
         <p>Your ultimate destination for all hairstyles</p>
@@ -16,9 +16,9 @@ function HeroSection() {
         <button>Book Now</button>
       </section>
       
-    );
+    ); */
 
-  }
+  
   return (
     <section className="Hero-section">
       <h2>Welcome to Salon Don</h2>
