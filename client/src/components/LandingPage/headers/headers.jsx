@@ -14,7 +14,7 @@ function Header() {
             <a href="#contact">Contact</a>
           </li>
           <li>
-            <a href="#login">Login</a>
+            <a href="login">Login</a>
           </li>
         </ul>
       </nav>
