@@ -23,6 +23,7 @@ function App() {
       <Route path="/" element={<Landing />} /> {/* Route for the Landing page */}
       <Route path="/booking" element={<BookingPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/confirmation" element={<ConfirmationPage />} />
     </Routes>
   );
 }
