@@ -26,14 +26,15 @@ router.post("/register", async (req, res) => {
     }
 
     else{
-        const existingEmployee = await User.findOne({ email: email });
-        if (existingEmployee) {
+        const existingUser = await User.findOne({ email: email });
+        if (existingUser) {
           return res.status(400).json({ msssage: "User already registered on system." });
         }
-        else if(!existingEmployee){
+        else{
+          const hashedPassword = bcrypt.hashSync(password, 13);
           const newUser = new User({
             email,
-            password: bcrypt.hashSync(password, 13),
+            password: hashedPassword,
           });
           const savedUser = await newUser.save();
       
@@ -50,14 +51,6 @@ router.post("/register", async (req, res) => {
           });
         }
       }
-
-    // const newUser = await user.save();
-
-    // res.status(200).json({
-    //   user: newUser,
-    //   message: `Welcome! we are glad to have you on our platform`, // message for the new user
-    //   token,
-    // });
   } catch (error) {
     errorResponse(res, error);
   }
@@ -67,22 +60,28 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body; // get email and password from request body
-
-    const user = await User.findOne({ email }); // find user
+    const registeredUser = await User.findOne({ email: email }); // find user
     
-    // check if user exist
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ message: "Invalid email or password" });
-}
-
-    // create token for our validated session
-    const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "1 day" });
-
-    res.status(200).json({
-      user,
-      message: `successfully logged In: ${email}`,
-      token,
-    });
+    // check if user exists
+    if (registeredUser) {
+      const passcheck = await bcrypt.compare(password, registeredUser.password);
+      if (passcheck) {
+        const token = jwt.sign({ id: registeredUser._id }, SECRET, { expiresIn: "1 day" });
+        return res.status(200).json({
+          user: registeredUser,
+          message: `Successfully logged in: ${email}`,
+          token,
+        });
+      } else if(!passcheck){
+        return res.status(401).json({
+          message: "Incorrect password",
+        });
+      }
+    } else {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
   } catch (error) {
     errorResponse(res, error);
   }
