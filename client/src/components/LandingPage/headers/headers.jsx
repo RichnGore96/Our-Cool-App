@@ -1,17 +1,22 @@
 function Header() {
   return (
-    <header className="App-header"> {/* Defining the header section with a class for styling */}
-      <h1>Salon Don</h1> {/* Displaying the title of the salon */}
-      <nav> {/* Defining the navigation menu */}
-        <ul> {/* Unordered list for the navigation links */}
-          <li><a href="#home">Home</a></li> {/* Link to the Home section */}
-          <li><a href="#services">Services</a></li> {/* Link to the Services section */}
-          <li><a href="#contact">Contact</a></li> {/* Link to the Contact section */}
+    <header className="App-header">
+      <h1>Salon Don</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="#home">Home</a>  
+          </li>
+          <li>
+            <a href="#services">Services</a>
+          </li>
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
+          <li>
+            <a href="login">Login</a>
+          </li>
         </ul>
-      </nav>
-    </header>
-  );
-}
       </nav>
     </header>
   );
