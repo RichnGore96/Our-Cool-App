@@ -14,44 +14,42 @@ const errorResponse = (res, error) => {
     });
   };
 
-// register
-router.post("/register", async (req, res) => {
   // Signup Route
-
+router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const employee = await Employee.findOne({ email });
+    const employee = await Employee.findOne({ email: email });
 
     if (!employee) {
       return res.status(404).json({ message: "Employee email not found." });
     }
 
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ msssage: "User already registered on system." });
-    }
-
-    const newUser = new User({
-      email,
-      password: bcrypt.hashSync(password, 13),
-    });
-    const savedUser = await newUser.save();
-
-    const token = jwt.sign(
-      { id: savedUser._id }, // payload
-      SECRET, //message
-      { expiresIn: "1 day" } // options
-    );
-
-    res.status(200).json({
-      user: savedUser,
-      message: `Welcome! we are glad to have you on our platform`, // message for the new user
-      token,
-    });
+    else{
+        const existingEmployee = await User.findOne({ email: email });
+        if (existingEmployee) {
+          return res.status(400).json({ msssage: "User already registered on system." });
+        }
+        else if(!existingEmployee){
+          const newUser = new User({
+            email,
+            password: bcrypt.hashSync(password, 13),
+          });
+          const savedUser = await newUser.save();
+      
+          const token = jwt.sign(
+            { id: savedUser._id }, // payload
+            SECRET, //message
+            { expiresIn: "1 day" } // options
+          );
+      
+          res.status(200).json({
+            user: savedUser,
+            message: `Welcome! we are glad to have you on our platform`, // message for the new user
+            token,
+          });
+        }
+      }
 
     // const newUser = await user.save();
 
@@ -64,6 +62,7 @@ router.post("/register", async (req, res) => {
     errorResponse(res, error);
   }
 });
+
 // login
 router.post("/login", async (req, res) => {
   try {
