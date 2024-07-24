@@ -12,5 +12,9 @@ function Header() {
     </header>
   );
 }
+      </nav>
+    </header>
+  );
+}
 
 export default Header; // Exporting the Header component as the default export

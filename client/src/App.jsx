@@ -1,5 +1,6 @@
 import React from "react"; // Importing the React library
 import "./App.css"; // Importing the App.css file for styling
+import Login from "./components/auth/login/Login";
 import Landing from "./components/LandingPage/Landing"; // Importing the Landing component
 import BookingPage from "./components/BookingPage/BookingPage"; // Importing Booking page component
 import CheckoutPage from "./components/BookingPage/checkout/Checkout"; // Importing Checkout page component
@@ -24,6 +25,7 @@ function App() {
       <Route path="/booking" element={<BookingPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/confirmation" element={<ConfirmationPage />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }
