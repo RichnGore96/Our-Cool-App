@@ -6,22 +6,22 @@ function Stylists() {
           <StylistCard
             name="Jane Doe"
             specialty="Haircut Specialist"
-            imageUrl="https://via.placeholder.com/150"
+            imageUrl="https://i.pinimg.com/474x/e3/7b/c2/e37bc2b389abcbc571cd34fc896da148.jpg"
           />
           <StylistCard
             name="John Smith"
             specialty="Color Expert"
-            imageUrl="https://via.placeholder.com/150"
-          />
+            imageUrl="https://c8.alamy.com/comp/T58PRA/barber-man-in-hipster-style-holding-hairdressers-tools-handsome-cartoon-character-beard-shave-service-vector-illustration-isolated-on-white-backgr-T58PRA.jpg "        
+            />
           <StylistCard
             name="Alice Johnson"
             specialty="Styling Guru"
-            imageUrl="https://via.placeholder.com/150"
+            imageUrl="https://www.shutterstock.com/image-vector/beautiful-redhead-girl-hairdresser-holds-600nw-1770114167.jpg"
           />
           <StylistCard
             name="Jane Smith"
             specialty="Color Expert"
-            imageUrl="https://static.vecteezy.com/system/resources/previews/003/695/380/non_2x/stylist-hairdresser-holds-strand-for-hair-extensions-hair-lengthening-woman-with-hairdressing-tools-stylist-by-profession-it-can-be-used-for-beauty-website-blogs-of-hairdresser-colorist-vector.jpg"
+            imageUrl="https://c8.alamy.com/comp/M9M914/hairdresser-woman-in-professional-uniform-beautiful-lady-stylist-cartoon-character-holds-tools-for-hair-coloring-vector-illustration-on-white-backgr-M9M914.jpg"
           />
         </div>
       </section>
