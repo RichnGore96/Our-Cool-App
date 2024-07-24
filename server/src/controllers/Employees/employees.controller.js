@@ -46,7 +46,7 @@ router.post("/register", async (req, res) => {
       
           res.status(200).json({
             user: savedUser,
-            message: `Welcome! we are glad to have you on our platform`, // message for the new user
+            message: `Welcome! we are glad to have you on our platform.`, // message for the new user
             token,
           });
         }
@@ -74,7 +74,7 @@ router.post("/login", async (req, res) => {
         });
       } else if(!passcheck){
         return res.status(401).json({
-          message: "Incorrect password",
+          message: `Incorrect password`,
         });
       }
     } else {
