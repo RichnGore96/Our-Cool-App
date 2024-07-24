@@ -37,7 +37,7 @@ db.once("open", () => {
 //routes
 app.use("/clients", clientController);
 
-
+//app.use("/stylists", stylistController, validateSession);
 
 app.use(
   "/appointments",
